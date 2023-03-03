@@ -13,7 +13,9 @@ export default function Welcome({ setIsGameStarted }) {
 
       <S.Title>ZapRecall</S.Title>
 
-      <S.Button onClick={handleStartGame}>Iniciar Recall!</S.Button>
+      <S.Button onClick={handleStartGame} data-test="start-btn">
+        Iniciar Recall!
+      </S.Button>
     </S.Container>
   );
 }
