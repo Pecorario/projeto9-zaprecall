@@ -45,52 +45,67 @@ export default function Flashcard({
   return (
     <>
       {!isStarted && !isAnswered && (
-        <S.Container>
-          <S.Title>Pergunta {content.id}</S.Title>
+        <S.Container data-test="flashcard">
+          <S.Title data-test="flashcard-text">Pergunta {content.id}</S.Title>
 
-          <button onClick={handlePlay}>
+          <button onClick={handlePlay} data-test="play-btn">
             <img src={iconPlay} alt="Jogar" />
           </button>
         </S.Container>
       )}
 
       {!isStarted && isAnswered && (
-        <S.Container>
-          <S.Title isAnswered type={iconType}>
+        <S.Container data-test="flashcard">
+          <S.Title isAnswered type={iconType} data-test="flashcard-text">
             Pergunta {content.id}
           </S.Title>
 
-          {iconType === 'right' && <img src={iconRight} alt="Correto" />}
-          {iconType === 'almost' && <img src={iconAlmost} alt="Quase" />}
-          {iconType === 'wrong' && <img src={iconWrong} alt="Errado" />}
+          {iconType === 'right' && (
+            <img src={iconRight} alt="Correto" data-test="zap-icon" />
+          )}
+          {iconType === 'almost' && (
+            <img src={iconAlmost} alt="Quase" data-test="partial-icon" />
+          )}
+          {iconType === 'wrong' && (
+            <img src={iconWrong} alt="Errado" data-test="no-icon" />
+          )}
         </S.Container>
       )}
 
       {isStarted && !isTurned && (
-        <S.Opened>
-          <p>{content.question}</p>
-          <S.ButtonTurn onClick={handleTurn}>
+        <S.Opened data-test="flashcard">
+          <p data-test="flashcard-text">{content.question}</p>
+          <S.ButtonTurn onClick={handleTurn} data-test="turn-btn">
             <img src={iconTurn} alt="Virar" />
           </S.ButtonTurn>
         </S.Opened>
       )}
 
       {isStarted && isTurned && (
-        <S.Opened>
-          <p>{content.answer}</p>
+        <S.Opened data-test="flashcard">
+          <p data-test="flashcard-text">{content.answer}</p>
           <div>
-            <S.ButtonAnswer type="wrong" onClick={() => handleAnswer('wrong')}>
+            <S.ButtonAnswer
+              type="wrong"
+              onClick={() => handleAnswer('wrong')}
+              data-test="no-btn"
+            >
               Não lembrei
             </S.ButtonAnswer>
 
             <S.ButtonAnswer
               type="almost"
               onClick={() => handleAnswer('almost')}
+              data-test="partial-btn"
             >
               Quase não lembrei
             </S.ButtonAnswer>
 
-            <S.ButtonAnswer type="right" onClick={() => handleAnswer('right')}>
+            <S.ButtonAnswer
+              type="right"
+              onClick={() => handleAnswer('right')}
+              data-test="zap-btn"
+            >
               Zap!
             </S.ButtonAnswer>
           </div>

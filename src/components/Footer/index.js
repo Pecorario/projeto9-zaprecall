@@ -33,8 +33,12 @@ export default function Footer({ answers, quantityOfCards, isFinished }) {
   }
 
   return (
-    <S.Container isFinished={isFinished}>
-      {isFinished && <S.FinishContainer>{getMessage()}</S.FinishContainer>}
+    <S.Container isFinished={isFinished} data-test="footer">
+      {isFinished && (
+        <S.FinishContainer data-test="finish-text">
+          {getMessage()}
+        </S.FinishContainer>
+      )}
 
       <S.Text>
         {answers.length}/{quantityOfCards} CONCLUÍDOS
@@ -43,11 +47,27 @@ export default function Footer({ answers, quantityOfCards, isFinished }) {
       <S.AnswersContainer>
         {answers.map((item, idx) => {
           if (item === 'right') {
-            return <img key={idx} src={iconRight} alt="Correto" />;
+            return (
+              <img
+                key={idx}
+                src={iconRight}
+                alt="Correto"
+                data-test="zap-icon"
+              />
+            );
           } else if (item === 'almost') {
-            return <img key={idx} src={iconAlmost} alt="Quase" />;
+            return (
+              <img
+                key={idx}
+                src={iconAlmost}
+                alt="Quase"
+                data-test="partial-icon"
+              />
+            );
           } else {
-            return <img key={idx} src={iconWrong} alt="Errado" />;
+            return (
+              <img key={idx} src={iconWrong} alt="Errado" data-test="no-icon" />
+            );
           }
         })}
       </S.AnswersContainer>
