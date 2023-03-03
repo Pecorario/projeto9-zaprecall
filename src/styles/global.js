@@ -67,4 +67,8 @@ export const GlobalStyle = createGlobalStyle`
     background: transparent;
     border: none;
   }
+
+  ::-webkit-scrollbar {
+    width: 0;
+  }
 `;
